@@ -7,14 +7,21 @@
     <!-- <script type="text/javascript" src="http://livejs.com/live.js"></script> -->
 
     <!-- css -->
-    <link rel="stylesheet" type="text/css" href="./css/main.css" />
     <link
       rel="stylesheet"
       type="text/css"
       href="./css/bootstrap-4.5.3-dist/css/bootstrap.min.css"
     />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen, projection"
+      href="./css/main.css"
+    />
+    <!-- <link rel="stylesheet" type="text/css" media="screen, projection" href="./css/demo.css" /> -->
+
     <!-- css -->
-    
+
     <!-- js -->
     <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="jquery-3.4.1.slim.min.js"></script>
@@ -23,44 +30,167 @@
       src="./js/bootstrap-4.5.3-dist/js/bootstrap.min.js"
     ></script>
     <script type="text/javascript" src="./js/main.js"></script>
+    <script type="text/javascript" src="./js/graph.js"></script>
+    <script type="text/javascript" src="./js/astar.js"></script>
+    <!--<script type='text/javascript' src='../dist/astar-concat.js'></script>-->
+    <script type="text/javascript" src="./js/maze.js"></script>
+
     <!-- js -->
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light nav">
-      <a class="navbar-brand" href="/">🦊MEOWMEOW</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="true" aria-label="Toggle navigation">
+      <a class="navbar-brand position-fixed" href="/">🦊MEOWMEOW</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="true"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+      <div class="collapse navbar-collapse w-100" id="navbarNavAltMarkup">
         <div class="navbar-nav w-100 d-flex justify-content-center">
-          <a class="nav-item nav-link active" href="#">HOME <span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link" href="./pages/game.html">PLAY GAME</a>
-          <a class="nav-item nav-link" href="./pages/tutorial.html">TUTORIAL</a>
+          <a class="nav-item nav-link active" href="#"
+            >HOME <span class="sr-only">(current)</span></a
+          >
+          <!-- <a class="nav-item nav-link" href="./pages/game.html">PLAY GAME</a> -->
+          <!-- <a class="nav-item nav-link" href="./pages/tutorial.html">TUTORIAL</a> -->
         </div>
       </div>
     </nav>
 
-    <div class="container d-flex align-items-center flex-column">
-      <h1 class="header">HI Friend!! \(^ 'w' ^)/</h1><br>
-      <h1 class="header">HI Friend!! \(^ 'w' ^)/</h1><br>
-      <h1 class="header">HI Friend!! \(^ 'w' ^)/</h1><br>
-      <h1 class="header">HI Friend!! \(^ 'w' ^)/</h1><br>
-      <h1 class="header">HI Friend!! \(^ 'w' ^)/</h1><br>
-      <h1 class="header">HI Friend!! \(^ 'w' ^)/</h1><br>
-      <h1 class="header">HI Friend!! \(^ 'w' ^)/</h1><br>
-      <h1 class="header">HI Friend!! \(^ 'w' ^)/</h1><br>
-      <h1 class="header">HI Friend!! \(^ 'w' ^)/</h1><br>
-      <h1 class="header">HI Friend!! \(^ 'w' ^)/</h1><br>
-      <h1 class="header">HI Friend!! \(^ 'w' ^)/</h1><br>
-      <h1 class="header">HI Friend!! \(^ 'w' ^)/</h1><br>
-      <h1 class="header">HI Friend!! \(^ 'w' ^)/</h1><br>
-      <h1 class="header">HI Friend!! \(^ 'w' ^)/</h1><br>
-      <h2>>> This is Maze Problem~ <<</h2><br>
-      <h1>Let Comming soon!!! (>w<)</h1>
+    <div class="container d-flex align-items-center flex-column pt10">
+      <h1 class="header">HI Friend!! (=^ㅇㅅㅇ^=)</h1>
+      <br />
+      <h2 class="header">HI Friend!! (=^ㅇㅅㅇ^=)</h2>
+      <h2 class="header text-info">We are <span class="text-primary">MEOWMEOW (=^ㅇㅅㅇ^=)</span></h2>
+      <h1>>> This is Maze Problem~ <<</h2>
+      <br />
+      <div id="contentd-flex flex-row">
 
+        <div id="controls" class="clear">
+          <label for="selectGridSize">Grid Size: </label>
+          <select id="selectGridSize" name="selectGridSize">
+            <option value="10">10x10</option>
+            <option value="15">15x15</option>
+            <option value="20">20x20</option>
+            <option value="30">30x30</option>
+            <option value="40" selected="selected">40x40</option>
+            <option value="50">50x50</option>
+            <option value="100">100x100</option>
+          </select>
+
+          <br />
+          <label for="selectWallFrequency">Wall Frequency: </label>
+          <select id="selectWallFrequency">
+            <option value=".1">10%</option>
+            <option value=".2">20%</option>
+            <option value=".3">30%</option>
+            <option value=".4">40%</option>
+          </select>
+          <br />
+          
+
+          <label for="generateWeights">Add random weights?</label>
+          <input type="checkbox" name="generateWeights" id="generateWeights" />
+          <br />
+          <label for="displayWeights">Display weight values?</label>
+          <input type="checkbox" name="displayWeights" id="displayWeights" />
+          <br />
+          <div class="border border-info p-1">
+
+      
+          <button
+            type="button"
+            id="btnClear"
+            value="Create New Map"
+            class="btn btnMenu btn-primary"
+          >
+            Create New Map
+          </button>
+          <button
+            type="button"
+            id="btnGenerate"
+            value="Random New Map"
+            class="btn btnMenu btn-primary"
+          >
+            Random New Map
+          </button>
+        </div>
+          <br />
+          <div class="d-flex">
+            <div class="border border-info p-1">
+              <button
+                type="button"
+                id="btnCreateWall"
+                value="Wall mode"
+                class="btn btnMenu btn-secondary btn-success"
+              >
+                Wall mode
+              </button>
+              <button
+                type="button"
+                id="btnFind"
+                value="Find mode"
+                class="btn btnMenu btn-secondary "
+              >
+                Find mode
+              </button> </div>
+              <!-- <br/> -->
+              <button
+                type="button"
+                id="btnDelPath"
+                value="re path"
+                class="btn btnMenu btn-danger "
+              >
+                Delete Path
+              </button>
+          </div>
+          
+          <br />
+          <span id="message">Click on a grid position to create wall</span>
+        </div>
+
+        <div id="main">
+          <div id="search_grid">Loading grid...</div>
+        </div>
+      </div>
+      <div id="footer"></div>
+
+      <h1 class="header">HI Friend!! \(^ 'w' ^)/</h1>
+      <br />
+      <h1 class="header">HI Friend!! \(^ 'w' ^)/</h1>
+      <br />
+      <h1 class="header">HI Friend!! \(^ 'w' ^)/</h1>
+      <br />
+      <h1 class="header">HI Friend!! \(^ 'w' ^)/</h1>
+      <br />
+      <h1 class="header">HI Friend!! \(^ 'w' ^)/</h1>
+      <br />
+      <h1 class="header">HI Friend!! \(^ 'w' ^)/</h1>
+      <br />
+      <h1 class="header">HI Friend!! \(^ 'w' ^)/</h1>
+      <br />
+      <h1 class="header">HI Friend!! \(^ 'w' ^)/</h1>
+      <br />
+      <h1 class="header">HI Friend!! \(^ 'w' ^)/</h1>
+      <br />
+      <h1 class="header">HI Friend!! \(^ 'w' ^)/</h1>
+      <br />
+      <h1 class="header">HI Friend!! \(^ 'w' ^)/</h1>
+      <br />
+      <h1 class="header">HI Friend!! \(^ 'w' ^)/</h1>
+      <br />
       <h1>
-        (<span class="red">⁄ ⁄</span>><span class="red">⁄</span>ω<span class="red">⁄</span><<span class="red">⁄ ⁄</span> ")
+        (<span class="red">⁄ ⁄</span>><span class="red">⁄</span>ω<span
+          class="red"
+          >⁄</span
+        ><<span class="red">⁄ ⁄</span> ")
       </h1>
+      <br>
     </div>
   </body>
 </html>
