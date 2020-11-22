@@ -3,6 +3,7 @@
 }
 .header {
   color: #33b95c;
+  margin-top: 2.5rem;
 }
 h1 {
   color: rgb(170, 47, 219);
@@ -24,9 +25,7 @@ h1 {
   margin: 1em;
 }
 
-#main{
-  
-}
+
 
 html, body {
 	height:100%;
