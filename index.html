@@ -23,8 +23,9 @@
     <!-- css -->
 
     <!-- js -->
-    <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="jquery-3.4.1.slim.min.js"></script>
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <!-- <script type="text/javascript" src="jquery-3.4.1.min.js"></script> -->
+    <!-- <script type="text/javascript" src="jquery-3.4.1.slim.min.js"></script> -->
     <script
       type="text/javascript"
       src="./js/bootstrap-4.5.3-dist/js/bootstrap.min.js"
@@ -38,28 +39,6 @@
     <!-- js -->
   </head>
   <body>
-    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light nav">
-      <a class="navbar-brand position-fixed" href="/">🦊MEOWMEOW</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup"
-        aria-expanded="true"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse w-100" id="navbarNavAltMarkup">
-        <div class="navbar-nav w-100 d-flex justify-content-center">
-          <a class="nav-item nav-link active" href="#"
-            >HOME <span class="sr-only">(current)</span></a
-          >
-
-        </div>
-      </div>
-    </nav> -->
 
     <div class="container d-flex align-items-center flex-column pt10">
 
@@ -70,6 +49,7 @@
       <div id="contentd-flex flex-row">
 
         <div id="controls" class="clear">
+          <!-- Grid size -->
           <label for="selectGridSize">Grid Size: </label>
           <select id="selectGridSize" name="selectGridSize">
             <option value="10">10x10</option>
@@ -82,6 +62,7 @@
           </select>
 
           <br />
+          <!-- Wall Frequency -->
           <label for="selectWallFrequency">Wall Frequency: </label>
           <select id="selectWallFrequency">
             <option value=".1">10%</option>
@@ -91,7 +72,10 @@
           </select>
           <br />
           
-
+          <!-- random || show weights -->
+          <label for="checkDebug">Show search info?</label>
+          <input type="checkbox" name="checkDebug" id="checkDebug" />
+          <br />
           <label for="generateWeights">Add random weights?</label>
           <input type="checkbox" name="generateWeights" id="generateWeights" />
           <br />
@@ -100,7 +84,7 @@
           <br />
           <div class="border border-info p-1">
 
-      
+          <!-- Create || Random -->
           <button
             type="button"
             id="btnClear"
@@ -119,6 +103,7 @@
           </button>
         </div>
           <br />
+          <!-- Mode -->
           <div class="d-flex">
             <div class="border border-info p-1">
               <button
@@ -137,7 +122,7 @@
               >
                 Find mode
               </button> </div>
-              <!-- <br/> -->
+
               <button
                 type="button"
                 id="btnDelPath"
@@ -149,14 +134,28 @@
           </div>
           
           <br />
+          <fieldset id='weightsKey'>
+	    			<legend>Key:</legend>
+	    			<div>
+	    			<span class="grid_item weight1" style="width: 14.25px; height: 14.25px; margin-right: 6px;" id="keyWeight3"></span> Weight of 1 </div>
+	    			<div>
+	    			<span class="grid_item weight3" style="width: 14.25px; height: 14.25px; margin-right: 6px;" id="keyWeight3"></span> Weight of 3 </div>
+	    			<div>
+	    			<span class="grid_item weight5" style="width: 14.25px; height: 14.25px; margin-right: 6px;" id="keyWeight3"></span> Weight of 5 </div>
+	    			<div>
+	    			<span class="grid_item wall" style="width: 14.25px; height: 14.25px; margin-right: 6px;" id="keyWall"></span> Wall (imapassable) </div>
+	    		</fieldset>
+          <br />
+          
           <span id="message">Click on a grid position to create wall</span>
         </div>
-
+        <!-- Generate Maze -->
         <div id="main">
           <div id="search_grid">Loading grid...</div>
         </div>
       </div>
       <div id="footer"></div>
+      <!-- Emoji -->
       <h1>
         (<span class="red">⁄ ⁄</span>><span class="red">⁄</span>ω<span
           class="red"
