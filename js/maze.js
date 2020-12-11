@@ -297,9 +297,11 @@ GraphSearch.prototype.animatePath = function (path) {
   let startTime = Date.now();
   var interval = setInterval(function () {
     var elapsedTime = Date.now() - startTime;
-    $("#message").text(
-      "search took " + (elapsedTime / 1000).toFixed(3) + "ms."
-    );
+    if (elapsedTime >= 1000)
+      $("#message").text(
+        "search took " + (elapsedTime / 1000).toFixed(3) + "s."
+      );
+    else $("#message").text("search took " + elapsedTime + "ms.");
   }, 100);
 
   this.$graph.find("." + css.active).removeClass(css.active);
