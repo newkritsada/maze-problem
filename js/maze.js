@@ -58,15 +58,14 @@ $(function () {
     mode = "wall";
     document.getElementById("btnFind").classList.remove("btn-success");
     document.getElementById("btnCreateWall").classList.add("btn-success");
-	$("#message").text("Click on a grid position to create wall");
+    $("#message").text("Click on a grid position to create wall");
     console.log("Wall mode");
-	
   });
   $("#btnFind").click(function () {
     mode = "find";
     document.getElementById("btnCreateWall").classList.remove("btn-success");
     document.getElementById("btnFind").classList.add("btn-success");
-	$("#message").text("Click on a grid position to find path");
+    $("#message").text("Click on a grid position to find path");
     console.log("Find mode");
   });
   $("#btnDelPath").click(function () {
@@ -294,6 +293,15 @@ GraphSearch.prototype.animateNoPath = function () {
   jiggle(15);
 };
 GraphSearch.prototype.animatePath = function (path) {
+  //Couting
+  let startTime = Date.now();
+  var interval = setInterval(function () {
+    var elapsedTime = Date.now() - startTime;
+    $("#message").text(
+      "search took " + (elapsedTime / 1000).toFixed(3) + "ms."
+    );
+  }, 100);
+
   this.$graph.find("." + css.active).removeClass(css.active);
   var grid = this.grid;
   var timeout = 1000 / grid.length;
@@ -309,6 +317,8 @@ GraphSearch.prototype.animatePath = function (path) {
   var addClass = function (path, i) {
     if (i >= path.length) {
       // Finished showing path, now remove
+      // End Couting
+      clearInterval(interval);
       return removeClass(path, 0);
     }
     elementFromNode(path[i]).addClass(css.active);
