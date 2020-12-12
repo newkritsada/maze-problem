@@ -49,9 +49,11 @@
       <div id="contentd-flex flex-row">
 
         <div id="controls" class="clear">
-          <!-- Grid size -->
-          <label for="selectGridSize">Grid Size: </label>
-          <select id="selectGridSize" name="selectGridSize">
+          <div class="row row-cols-2">
+            <div class="col">
+            <!-- Grid size -->
+            <label for="selectGridSize">Grid Size: </label>
+            <select id="selectGridSize" name="selectGridSize">
             <option value="10">10x10</option>
             <option value="15">15x15</option>
             <option value="20">20x20</option>
@@ -59,49 +61,100 @@
             <option value="40" selected="selected">40x40</option>
             <option value="50">50x50</option>
             <option value="100">100x100</option>
-          </select>
+            </select>
+            <br />
 
-          <br />
-          <!-- Wall Frequency -->
-          <label for="selectWallFrequency">Wall Frequency: </label>
-          <select id="selectWallFrequency">
+            <!-- Wall Frequency -->
+            <label for="selectWallFrequency">Wall Frequency: </label>
+            <select id="selectWallFrequency">
             <option value=".1">10%</option>
             <option value=".2">20%</option>
             <option value=".3">30%</option>
             <option value=".4">40%</option>
-          </select>
-          <br />
+            </select>
+            <br />
           
-          <!-- random || show weights -->
-          <label for="checkDebug">Show search info?</label>
-          <input type="checkbox" name="checkDebug" id="checkDebug" />
-          <br />
-          <label for="generateWeights">Add random weights?</label>
-          <input type="checkbox" name="generateWeights" id="generateWeights" />
-          <br />
-          <label for="displayWeights">Display weight values?</label>
-          <input type="checkbox" name="displayWeights" id="displayWeights" />
-          <br />
+            <!-- random || show weights -->
+            <label for="checkDebug">Show search info?</label>
+            <input type="checkbox" name="checkDebug" id="checkDebug" />
+            <br />
+            <label for="generateWeights">Add random weights?</label>
+            <input type="checkbox" name="generateWeights" id="generateWeights" />
+            <br />
+            <label for="displayWeights">Display weight values?</label>
+            <input type="checkbox" name="displayWeights" id="displayWeights" />
+            <br />
+            </div>
+            <div class="col">
+              <h5 class="">Sequence</h2>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">1</span>
+                  </div>
+                  <select class="form-control" id="select1" >
+                    <option value="north">north</option>
+                    <option value="south">south</option>
+                    <option value="east">east</option>
+                    <option value="west">west</option>
+                  </select>
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon2">2</span>
+                  </div>
+                  <select class="form-control" id="select2" >
+                    <option value="north">north</option>
+                    <option value="south">south</option>
+                    <option value="east">east</option>
+                    <option value="west">west</option>
+                  </select>
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon3">3</span>
+                  </div>
+                  <select class="form-control" id="select3" >
+                    <option value="north">north</option>
+                    <option value="south">south</option>
+                    <option value="east">east</option>
+                    <option value="west">west</option>
+                  </select>
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon4">4</span>
+                  </div>
+                  <select class="form-control" id="select4" >
+                    <option value="north">north</option>
+                    <option value="south">south</option>
+                    <option value="east">east</option>
+                    <option value="west">west</option>
+                  </select>
+                </div>
+
+
+            </div>
+          </div>
           <div class="border border-info p-1">
 
-          <!-- Create || Random -->
-          <button
-            type="button"
-            id="btnClear"
-            value="Create New Map"
-            class="btn btnMenu btn-primary"
-          >
-            Create New Map
-          </button>
-          <button
-            type="button"
-            id="btnGenerate"
-            value="Random New Map"
-            class="btn btnMenu btn-primary"
-          >
-            Random New Map
-          </button>
-        </div>
+            <!-- Create || Random -->
+            <button
+              type="button"
+              id="btnClear"
+              value="Create New Map"
+              class="btn btnMenu btn-primary"
+            >
+              Create New Map
+            </button>
+            <button
+              type="button"
+              id="btnGenerate"
+              value="Random New Map"
+              class="btn btnMenu btn-primary"
+            >
+              Random New Map
+            </button>
+          </div>
           <br />
           <!-- Mode -->
           <div class="d-flex">
@@ -121,7 +174,8 @@
                 class="btn btnMenu btn-secondary "
               >
                 Find mode
-              </button> </div>
+              </button> 
+            </div>
 
               <button
                 type="button"

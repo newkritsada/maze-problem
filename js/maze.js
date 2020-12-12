@@ -31,6 +31,9 @@ var generateRandom = function (width, height, wallFrequency) {
   return new Graph(nodes);
 };
 
+let sequence = ["north", "south", "east", "west"];
+let previous;
+
 $(function () {
   var $grid = $("#search_grid");
   var $selectWallFrequency = $("#selectWallFrequency");
@@ -96,6 +99,59 @@ $(function () {
       $("#weightsKey").slideUp();
     }
   });
+
+
+  let changeSelect = function () {
+    $("#select1").val(sequence[0]);
+    $("#select2").val(sequence[1]);
+    $("#select3").val(sequence[2]);
+    $("#select4").val(sequence[3]);
+  };
+  changeSelect();
+
+  let swapDirection = function (pre, next) {
+    let preIndex = sequence.indexOf(next);
+    sequence[sequence.indexOf(pre)] = next;
+    sequence[preIndex] = pre;
+    changeSelect();
+  };
+
+  $("#select1")
+    .focus(function () {
+      previous = this.value;
+    })
+    .change(function () {
+      let select = $("#select1").val();
+      swapDirection(previous, select);
+      previous = this.value;
+    });
+  $("#select2")
+    .focus(function () {
+      previous = this.value;
+    })
+    .change(function () {
+      let select = $("#select2").val();
+      swapDirection(previous, select);
+      previous = this.value;
+    });
+  $("#select3")
+    .focus(function () {
+      previous = this.value;
+    })
+    .change(function () {
+      let select = $("#select3").val();
+      swapDirection(previous, select);
+      previous = this.value;
+    });
+  $("#select4")
+    .focus(function () {
+      previous = this.value;
+    })
+    .change(function () {
+      let select = $("#select4").val();
+      swapDirection(previous, select);
+      previous = this.value;
+    });
 });
 
 var css = { start: "start", finish: "finish", wall: "wall", active: "active" };
@@ -182,12 +238,12 @@ GraphSearch.prototype.initialize = function (random = false) {
   //   });
   let clicking = false;
   this.$cells.mousedown(function (e) {
-    console.log("down");
+    // console.log("down");
     clicking = true;
     self.cellClicked($(this), mode);
   });
   this.$cells.mouseup(function (e) {
-    console.log("up");
+    // console.log("up");
     clicking = false;
   });
   $("#search_grid").mouseleave(function (e) {
@@ -214,9 +270,8 @@ GraphSearch.prototype.cellClicked = function ($end, status) {
       var start = this.nodeFromElement($start);
 
       var sTime = new Date();
-      var path = this.search(this.graph.nodes, start, end, this.opts.diagonal);
+      var path = this.search(this.graph.nodes, start, end, this.opts.diagonal,sequence);
       var fTime = new Date();
-
       if (!path || path.length == 0) {
         $("#message").text("couldn't find a path (" + (fTime - sTime) + "ms)");
         this.animateNoPath();
@@ -297,9 +352,11 @@ GraphSearch.prototype.animatePath = function (path) {
   let startTime = Date.now();
   var interval = setInterval(function () {
     var elapsedTime = Date.now() - startTime;
-    $("#message").text(
-      "search took " + (elapsedTime / 1000).toFixed(3) + "ms."
-    );
+    if (elapsedTime >= 1000)
+      $("#message").text(
+        "search took " + (elapsedTime / 1000).toFixed(3) + "s."
+      );
+    else $("#message").text("search took " + elapsedTime + "ms.");
   }, 100);
 
   this.$graph.find("." + css.active).removeClass(css.active);
